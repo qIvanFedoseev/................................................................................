@@ -1,0 +1,118 @@
+/////////////////////////////#include
+#include "TXlib.h"
+#include <math.h>
+/////////////////////////////structs
+struct ball
+{
+int x;
+int y;
+};
+struct ste
+{
+int x;
+int y;
+};
+/////////////////////////////void()
+void DrawLanscape() ;
+void drawl(ball bal);
+void stena1(ste na1);
+void stena2(ste na2);
+void stena3(ste na3);      //////// сделать новую структуру для неподвижной стенки
+/////////////////////////////main()
+int main()
+{
+   ball bal ;     ste na1       , na2       , na3      ;
+   bal.x=100;         na1.x=1820; na2.x=1820; na3.x = 400;
+   bal.y=100;         na1.y=200 ; na2.y=900 ; na3.x = 400;
+
+
+   txCreateWindow (1920, 1120);
+
+
+
+
+/////////////////////////////while()
+  while (!txGetAsyncKeyState (VK_ESCAPE))
+  {
+
+
+   txClear();
+
+
+
+   na1.x = na1.x - 30;
+   na2.x = na2.x - 30;
+   na3.x = na3.x     ;
+
+
+   DrawLanscape();
+
+   drawl  (bal);
+   stena1 (na1);
+   stena2 (na2);
+   stena3 (na3);
+
+
+        if (txGetAsyncKeyState (VK_LEFT))                         bal.x= bal.x-10;
+        if (txGetAsyncKeyState (VK_RIGHT))                        bal.x= bal.x+10;
+        if (txGetAsyncKeyState (VK_UP))                           bal.y= bal.y-10;
+        if (txGetAsyncKeyState (VK_DOWN))                         bal.y= bal.y+10;
+
+
+
+        if ( bal.y < 20   )                                       bal.y = bal.y + 10;
+        if ( bal.y > 1080 )                                       bal.y = bal.y - 10;
+        if ( bal.x < 20   )                                       bal.x = bal.x + 10;
+        if ( bal.x > 1895 )                                       bal.x = bal.x - 10;
+
+
+
+        if ( abs (bal.x - na1.x)<=60 && abs (bal.y - na1.y)<=210)   bal.x = 100, bal.y = 100;
+        if ( abs (bal.x - na2.x)<=60 && abs (bal.y - na2.y)<=210)   bal.x = 100, bal.y = 100;
+        if ( abs (bal.x - na3.x)<=60 && abs (bal.y - na3.y)<=210)   bal.x = 100, bal.y = 100;
+
+
+        if ( na1.x <= 10 ) na1.x = 1820;
+        if ( na2.x <= 10 ) na2.x = 1820;
+
+   txSleep(3);
+}
+return 0;
+}
+/////////////////////////////void DrawLanscape()
+ void DrawLanscape()
+{
+     txSetFillColor       (RGB (0, 128, 0));
+     txSetColor           (RGB (0, 128, 0));
+     txRectangle          (0, 0, 1920, 1120);
+}
+/////////////////////////////void drawball()
+ void drawl(ball bal)
+{
+ txSetColor           (RGB (60, 90, 120));
+ txCircle             (bal.x, bal.y, 20);
+ txSetFillColor           (RGB (60, 90, 120));
+ txCircle             (bal.x, bal.y, 20);
+}
+/////////////////////////////void stena1()
+ void stena1(ste na1)
+{
+ txSetFillColor           (RGB (30, 40, 220));
+ txSetColor               (RGB (30, 40, 220));
+ txRectangle              (na1.x - 50, na1.y - 200, na1.x + 50, na1.y + 200);
+
+}
+/////////////////////////////void stena2()
+ void stena2(ste na2)
+{
+ txSetFillColor           (RGB (30, 40, 220));
+ txSetColor               (RGB (30, 40, 220));
+ txRectangle              (na2.x - 50, na2.y - 200, na2.x + 50, na2.y + 200);
+}
+/////////////////////////////void stena3()
+void stena3(ste na3)
+{
+ txSetFillColor           (RGB (30, 40, 220));
+ txSetColor               (RGB (30, 40, 220));
+ txRectangle              (na3.x - 50, na3.y - 200, na3.x + 50, na3.y + 200);
+}
