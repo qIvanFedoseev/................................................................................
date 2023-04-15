@@ -1,0 +1,125 @@
+/////////////////////////////#include
+#include "TXlib.h"
+#include <math.h>
+/////////////////////////////structs
+struct ball
+{
+int x;
+int y;
+};
+struct ste
+{
+int x;
+int y;
+};
+struct stin
+{
+int x;
+int y;
+};
+/////////////////////////////void()
+void DrawLanscape   ()        ;
+void drawl          (ball bal);
+void stena1         (ste na1) ;
+void stena2         (ste na2) ;
+void stinka1        (stin ka1);
+void stinka2        (stin ka2);
+void stinka3        (stin ka3);
+/////////////////////////////main()
+int main()
+{
+
+TX_TRACE;
+
+   ball bal ;     ste na1       , na2       ; stin ka1       , ka2        , ka3         ;
+   bal.x=100;         na1.x=1820; na2.x=1820;      ka1.x =860; ka2.x = 560; ka3.x = 1160;
+   bal.y=560;         na1.y=200 ; na2.y=900 ;      ka1.y =560; ka2.y = 560; ka3.y = 560 ;
+   txCreateWindow (1920, 1120);
+/////////////////////////////while()
+  while (!txGetAsyncKeyState (VK_ESCAPE))
+  {
+   txClear();
+
+   na1.x =  na1.x - 30;
+   na2.x =  na2.x - 30;
+   ka1.x =  ka1.x + 0 ;
+   ka2.x =  ka2.x + 0 ;
+   ka3.x =  ka3.x + 0 ;
+
+   DrawLanscape()     ;
+   drawl       (bal)  ;
+   stena1      (na1)  ;
+   stena2      (na2)  ;
+   stinka1     (ka1)  ;
+   stinka2     (ka2)  ;
+   stinka3     (ka3)  ;
+
+        if (txGetAsyncKeyState (VK_LEFT))                                bal.x = bal.x-10;
+        if (txGetAsyncKeyState (VK_RIGHT))                               bal.x = bal.x+10;
+        if (txGetAsyncKeyState (VK_UP))                                  bal.y = bal.y-10;
+        if (txGetAsyncKeyState (VK_DOWN))                                bal.y = bal.y+10;
+        if ( bal.y < 20   )                                              bal.y = bal.y + 10;
+        if ( bal.y > 1080 )                                              bal.y = bal.y - 10;
+        if ( bal.x < 20   )                                              bal.x = bal.x + 10;
+        if ( bal.x > 1895 )                                              bal.x = bal.x - 10;
+        if ( abs (bal.x - na1.x)<=60 && abs (bal.y - na1.y)<=210)        bal.x = 100, bal.y = 560;
+        if ( abs (bal.x - na2.x)<=60 && abs (bal.y - na2.y)<=210)        bal.x = 100, bal.y = 560;
+        if ( abs (bal.x - ka1.x)<=60 && abs  (bal.y - ka1.y)<=210)       bal.x = 100, bal.y = 560;
+        if ( abs (bal.x - ka2.x)<=60 && abs  (bal.y - ka2.y)<=210)       bal.x = 100, bal.y = 560;
+        if ( abs (bal.x - ka3.x)<=60 && abs  (bal.y - ka3.y)<=210)       bal.x = 100, bal.y = 560;
+        if ( na1.x <= 10 )                                               na1.x = 1820;
+        if ( na2.x <= 10 )                                               na2.x = 1820;
+   txSleep(0.5);
+}
+return 0;
+}
+/////////////////////////////void DrawLanscape()
+ void DrawLanscape()
+{
+     txSetFillColor       (RGB (0, 128, 0)) ;
+     txSetColor           (RGB (0, 128, 0)) ;
+     txRectangle          (0, 0, 1920, 1120);
+}
+/////////////////////////////void drawball()
+ void drawl(ball bal)
+{
+ txSetColor               (RGB (60, 90, 120));
+ txCircle                 (bal.x, bal.y, 20) ;
+ txSetFillColor           (RGB (60, 90, 120));
+ txCircle                 (bal.x, bal.y, 20) ;
+}
+/////////////////////////////void stena1()
+ void stena1(ste na1)
+{
+ txSetFillColor           (RGB (30, 40, 220));
+ txSetColor               (RGB (30, 40, 220));
+ txRectangle              (na1.x - 50, na1.y - 200, na1.x + 50, na1.y + 200);
+}
+/////////////////////////////void stena2()
+ void stena2(ste na2)
+{
+ txSetFillColor           (RGB (30, 40, 220));
+ txSetColor               (RGB (30, 40, 220));
+ txRectangle              (na2.x - 50, na2.y - 200, na2.x + 50, na2.y + 200);
+}
+/////////////////////////////void stinka1()
+void stinka1(stin ka1)
+{
+ txSetFillColor           (RGB (30, 40, 220));
+ txSetColor               (RGB (30, 40, 220));
+ txRectangle              (ka1.x - 50, ka1.y - 200, ka1.x + 50, ka1.y + 200);
+}
+/////////////////////////////void stinka2()
+void stinka2(stin ka2)
+{
+ txSetFillColor           (RGB (30, 40, 220));
+ txSetColor               (RGB (30, 40, 220));
+ txRectangle              (ka2.x - 50, ka2.y - 200, ka2.x + 50, ka2.y + 200);
+}
+/////////////////////////////void stinka3()
+void stinka3(stin ka3)
+{
+ txSetFillColor           (RGB (30, 40, 220));
+ txSetColor               (RGB (30, 40, 220));
+ txRectangle              (ka3.x - 50, ka3.y - 200, ka3.x + 50, ka3.y + 200);
+}
